@@ -21,6 +21,7 @@ export function useGlobalCounters(sectionName?: string, scriptUrl?: string) {
 
     const fetchCounters = async () => {
       try {
+        // Obtener visitas de la sección
         if (sectionName) {
           const alreadyVisited = localStorage.getItem(storageKey!);
 
@@ -31,18 +32,29 @@ export function useGlobalCounters(sectionName?: string, scriptUrl?: string) {
           });
 
           const data: SectionCounter = await response.json();
-          setVisits(data.visitas || 0);
+          setVisits(data.visitas ?? 0);
 
           if (!alreadyVisited) {
             localStorage.setItem(storageKey!, "true");
           }
         }
 
-        // Obtener todos los contadores (opcional)
-        const allResponse = await fetch(`${scriptUrl}?all=true`);
-        const allData = await allResponse.json();
+        // Obtener todos los contadores
+        const allResponse = await fetch(scriptUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ seccion: "all" }),
+        });
 
-        if (allData.resumen && Array.isArray(allData.resumen)) {
+        // Intenta parsear como JSON, si falla, no actualiza allVisits
+        let allData: any = null;
+        try {
+          allData = await allResponse.json();
+        } catch {
+          allData = null;
+        }
+
+        if (allData && allData.resumen && Array.isArray(allData.resumen)) {
           const allObj: AllCounters = {};
           allData.resumen.forEach((item: SectionCounter) => {
             allObj[item.seccion] = item.visitas;
