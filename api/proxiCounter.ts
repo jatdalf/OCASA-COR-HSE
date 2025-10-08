@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwdWOF90G1_fTwW3qTjvIct-0LBnvXhvyWkfTzQ-iAiFYJRcrCQYONM4KsAYyeVOPmgCA/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw9rBtVDE5r7EIudleWED8UhZ_r7u6Jfh5nOLTaQlsB-IfN8i5-XKiUJI8UaF65IvdpkQ/exec';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
