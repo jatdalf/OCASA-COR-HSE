@@ -11,8 +11,13 @@ import ideaIcon from "../../assets/idea.gif";
 import heartIcon from "../../assets/heart.gif";
 import hashtagIcon from "../../assets/hashtag.gif";
 import React from "react";
+import { useGlobalCounters } from "../../hooks/useGlobalCounters";
+
+const SCRIPT_URL = "/api/proxiCounter"; // 🔹 llama al proxy
 
 const Home: React.FC = () => {
+    const { visits } = useGlobalCounters("Home", SCRIPT_URL);
+
   return (
      <div className={styles.headerContainer}>      
 
