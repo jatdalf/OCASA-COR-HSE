@@ -100,7 +100,7 @@ const Visitas: React.FC = () => {
         ) : (
         <>
           <div className={styles.chartContainer}>
-            <ResponsiveContainer width="100%" height={400}>
+            <ResponsiveContainer width="150%" height={500}>
             <BarChart
                 data={data}
                 layout="vertical" // <-- Cambia la orientación
