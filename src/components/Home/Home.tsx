@@ -26,30 +26,24 @@ const Home: React.FC = () => {
           />
         </div>
       
-       <div className={styles.subtitleContainer}>
-          <div className={styles.turquoiseBar}></div>
-          <div className={styles.subtitleText}>
-            <p className={styles.subtitle}>Salud,</p>
-            <p className={styles.subtitle}>Seguridad</p>
-            <p className={styles.subtitle}>y Medioambiente</p>
-          </div>
-        </div>
+       
 
       </div>
 
       {/* Grid de tarjetas */}
       <section className={styles.grid}>
-        <Link to="/noticias" className={`${styles.card} ${styles.cardNoticias}`}>
-          <div>
-          <img src={hashtagIcon} alt="Hastag" className={styles.SmallIcon} />
-          <img src={heartIcon} alt="Me gusta" className={styles.SmallIcon} />
-          </div>
-          <img src={newsIcon} alt="Noticias" className={styles.LargeIcon} />
-          <p className={styles.cardText}>Noticias La Voz</p>
-        </Link>
 
+        <div className={styles.introBlock}>
+            <div className={styles.turquoiseBar}></div>
+            <div className={styles.subtitleText}>
+                <p className={styles.subtitle}>Salud,</p>
+                <p className={styles.subtitle}>Seguridad</p>
+                <p className={styles.subtitle}>y Medioambiente</p>
+            </div>
+        </div>
+        
         <Link to="/capacitaciones" className={styles.card}>
-          <img src={calendarIcon} alt="Capacitaciones" className={styles.icon} />
+          <img src={calendarIcon} alt="Cpacitaciones" className={styles.icon} />
           <p className={styles.cardText}>Capacitaciones 2025</p>
         </Link>
 
@@ -61,6 +55,15 @@ const Home: React.FC = () => {
         <Link to="/accidentes" className={styles.card}>
           <img src={accidentIcon} alt="Accidentes" className={styles.icon} />
           <p className={styles.cardText}>Accidentes/incidentes</p>
+        </Link>
+
+        <Link to="/noticias" className={`${styles.card} ${styles.cardNoticias}`}>
+          <div>
+          <img src={hashtagIcon} alt="Hastag" className={styles.SmallIcon} />
+          <img src={heartIcon} alt="Me gusta" className={styles.SmallIcon2} />
+          </div>
+          <img src={newsIcon} alt="Noticias" className={styles.LargeIcon} />
+          <p className={styles.cardText}>Noticias La Voz</p>
         </Link>
 
         <Link to="/riesgo" className={styles.card}>
@@ -78,6 +81,15 @@ const Home: React.FC = () => {
           <p className={styles.cardText}>Consulta y participación</p>
         </Link>
       </section>
+
+      <div className={styles.footer}>
+        <p className={styles.footerText}>© 2025 OCASA. Todos los derechos reservados.</p>  
+        <p className={styles.footerText}>Desarrollado por Jorge Toso</p>
+        <Link to="/visitas" className={styles.footerLink}>
+        <p className={styles.footerText}>Visitas</p>
+        </Link>      
+      </div>  
+
     </div>
   );
 };

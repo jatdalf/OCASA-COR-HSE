@@ -1,0 +1,44 @@
+/* Contenedor para centrar el botón en pantalla */
+.centerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* ocupa toda la altura de la pantalla */
+}
+
+/* Botón */
+.accessButton {
+  padding: 15px 30px;
+  background-color: #acaaaa;
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-decoration: none;
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+}
+
+/* Hover con ligero escalado y sombra */
+.accessButton:hover {
+  transform: scale(1.1);
+  animation: neonPulse 2s infinite;
+  box-shadow: 0 0 15px #33ffdd, 0 0 25px #07f7e3, 0 0 35px #54f0e3;
+}
+
+/* Animación neón */
+@keyframes neonPulse {
+  0% {
+    color: white;
+    text-shadow: 0 0 5px #fff, 0 0 10px #8cffcd, 0 0 20px #48d09a;
+  }
+  50% {
+    color: #07f7e3d3;
+    text-shadow: 0 0 10px #54f0e3, 0 0 20px #33ffdd, 0 0 30px #99fff0;
+  }
+  100% {
+    color: #f5f9f9;
+    text-shadow: 0 0 5px #fff, 0 0 10px #35f3b4ee, 0 0 20px #a5ffd2ca;
+  }
+}

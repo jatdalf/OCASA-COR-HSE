@@ -7,6 +7,7 @@ import Noticias from "./components/Noticias/Noticias";
 import Riesgo from "./components/Riesgo/Riesgo";
 import Ambientales from "./components/Ambientales/Ambientales";
 import Consulta from "./components/Consulta/Consulta";
+import Visitas from "./components/Visitas/Visitas";
 
 function App() {
   return (
@@ -20,10 +21,10 @@ function App() {
         <Route path="/riesgo" element={<Riesgo />} />
         <Route path="/ambientales" element={<Ambientales />} />
         <Route path="/consulta" element={<Consulta />} />
+        <Route path="/visitas" element={<Visitas />} />
       </Routes>
     </Router>
   );
 }
-
 export default App;
 
