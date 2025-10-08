@@ -2,8 +2,7 @@ import React from "react";
 import AccessButton from "../AccessButton/AccessButton"; // ojo al nombre: mayúscula
 import { useGlobalCounter } from "../../hooks/useGlobalCounter";
 
-
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwVsve04CCynqj2JLNGoaGqlhZeRxzRzBiFJHsS10L4yCEAIsoT9-Fp3TqWSuCUC6TJ7A/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwdWOF90G1_fTwW3qTjvIct-0LBnvXhvyWkfTzQ-iAiFYJRcrCQYONM4KsAYyeVOPmgCA/exec";
 
 const Capacitaciones: React.FC = () => {
   const visits = useGlobalCounter("Capacitaciones", SCRIPT_URL);

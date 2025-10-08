@@ -16,12 +16,16 @@ export function useGlobalCounter(sectionName: string, scriptUrl: string) {
         const getData = await getResponse.json();
         let newCount = getData.visitas || 0;
 
-        // Si no visitó hoy, incrementamos
+        // Incrementar contador
         if (!alreadyVisited) {
-          const incResponse = await fetch(`${scriptUrl}?seccion=${sectionName}`, { mode: "cors" });
-          const incData = await incResponse.json();
-          newCount = incData.visitas;
-          localStorage.setItem(storageKey, "true");
+        const incResponse = await fetch(scriptUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ seccion: sectionName }),
+        });
+        const incData = await incResponse.json();
+        newCount = incData.visitas;
+        localStorage.setItem(storageKey, "true");
         }
 
         setVisits(newCount);
