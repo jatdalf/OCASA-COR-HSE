@@ -15,7 +15,33 @@ interface VisitaData {
   visitas: number;
 }
 
-const SCRIPT_URL = "https://script.google.com/macros/s/TU_URL_DEL_SCRIPT/exec";
+const SCRIPT_URL = "/api/proxiCounter";
+
+const AnimatedNumber: React.FC<{ value: number }> = ({ value }) => {
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    
+    const duration = 800; // ms
+    const stepTime = Math.max(Math.floor(duration / value), 20);
+    let current = 0;
+
+    const step = () => {
+      current++;
+      setDisplay((prev) => (prev < value ? prev + 1 : value));
+      if (current < value) {
+        setTimeout(step, stepTime);
+      }
+    };
+
+    setDisplay(0);
+    if (value > 0) step();
+    else setDisplay(0);
+    // eslint-disable-next-line
+  }, [value]);
+
+  return <span>{display}</span>;
+};
 
 const Visitas: React.FC = () => {
   const [data, setData] = useState<VisitaData[]>([]);
@@ -23,7 +49,11 @@ const Visitas: React.FC = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`${SCRIPT_URL}?all=true`);
+      const response = await fetch(SCRIPT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ seccion: "all" }),
+      });
       const json = await response.json();
       setData(json.resumen || []);
     } catch (err) {
@@ -35,7 +65,6 @@ const Visitas: React.FC = () => {
 
   useEffect(() => {
     fetchData();
-    // 🔁 Actualiza cada 30 segundos automáticamente
     const interval = setInterval(fetchData, 30000);
     return () => clearInterval(interval);
   }, []);
@@ -76,7 +105,9 @@ const Visitas: React.FC = () => {
               {data.map((item) => (
                 <tr key={item.seccion}>
                   <td>{item.seccion}</td>
-                  <td>{item.visitas}</td>
+                  <td className={styles.animatedNumber}>
+                    <AnimatedNumber value={item.visitas} />
+                  </td>
                 </tr>
               ))}
             </tbody>
