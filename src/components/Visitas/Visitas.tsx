@@ -72,8 +72,8 @@ const Visitas: React.FC = () => {
   return (
     <div className={styles.container}>
        <section className={styles.gridVisitas}>
-
-         <table className={styles.table}>
+        <div className={styles.leftBlock}>
+            <table className={styles.table}>
             <thead>
               <tr>
                 <th>Sección</th>
@@ -91,15 +91,14 @@ const Visitas: React.FC = () => {
               ))}
             </tbody>
           </table>
+        </div>
+        <div className={styles.rightBlock}>
+        <h1 className={styles.title}>📊 Estadísticas de Visitas</h1>
 
-      <h1 className={styles.title}>📊 Estadísticas de Visitas</h1>
-
-      {loading ? (
+        {loading ? (
         <p className={styles.loading}>Cargando...</p>
-      ) : (
+        ) : (
         <>
-
-
           <div className={styles.chartContainer}>
             <ResponsiveContainer width="100%" height={400}>
             <BarChart
@@ -118,13 +117,11 @@ const Visitas: React.FC = () => {
                 radius={[6, 6, 0, 0]}
                 />
             </BarChart>
-            </ResponsiveContainer>
-
-           
-          </div>
-         
+            </ResponsiveContainer>           
+          </div>         
         </>
       )}
+      </div>
       </section>
     </div>
   );
