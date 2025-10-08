@@ -93,6 +93,7 @@ const Home: React.FC = () => {
         {/* <Link to="/visitas" className={styles.footerLink}>
         <p className={styles.footerText}>Visitas</p>
         </Link>       */}
+        <p>Visitas globales: <strong>{visits !== null ? visits : "Cargando..."}</strong></p>
       </div>  
 
     </div>
