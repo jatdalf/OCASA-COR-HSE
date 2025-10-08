@@ -22,7 +22,6 @@ export function useGlobalCounters(sectionName?: string, scriptUrl?: string) {
     const fetchCounters = async () => {
       try {
         if (sectionName) {
-          // 🔹 Incrementar contador de la sección
           const alreadyVisited = localStorage.getItem(storageKey!);
 
           const response = await fetch(scriptUrl, {
@@ -39,11 +38,10 @@ export function useGlobalCounters(sectionName?: string, scriptUrl?: string) {
           }
         }
 
-        // 🔹 Obtener todos los contadores
+        // Obtener todos los contadores (opcional)
         const allResponse = await fetch(`${scriptUrl}?all=true`);
         const allData = await allResponse.json();
 
-        // Convierte arreglo a objeto { seccion: visitas }
         if (allData.resumen && Array.isArray(allData.resumen)) {
           const allObj: AllCounters = {};
           allData.resumen.forEach((item: SectionCounter) => {

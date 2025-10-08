@@ -83,7 +83,7 @@ const Home: React.FC = () => {
       </section>
 
       <div className={styles.footer}>
-        <p className={styles.footerText}>© 2025 OCASA. Todos los derechos reservados. (Version: 1.0)</p>  
+        <p className={styles.footerText}>© 2025 OCASA. Todos los derechos reservados. (Version: 1.01)</p>  
         <p className={styles.footerText}>Desarrollado por Jorge Toso</p>
         <Link to="/visitas" className={styles.footerLink}>
         <p className={styles.footerText}>Visitas</p>
