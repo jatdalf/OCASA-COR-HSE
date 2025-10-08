@@ -71,12 +71,35 @@ const Visitas: React.FC = () => {
 
   return (
     <div className={styles.container}>
+       <section className={styles.gridVisitas}>
+
+         <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>Sección</th>
+                <th>Visitas</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((item) => (
+                <tr key={item.seccion}>
+                  <td>{item.seccion}</td>
+                  <td className={styles.animatedNumber}>
+                    <AnimatedNumber value={item.visitas} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
       <h1 className={styles.title}>📊 Estadísticas de Visitas</h1>
 
       {loading ? (
         <p className={styles.loading}>Cargando...</p>
       ) : (
         <>
+
+
           <div className={styles.chartContainer}>
             <ResponsiveContainer width="100%" height={400}>
             <BarChart
@@ -96,28 +119,13 @@ const Visitas: React.FC = () => {
                 />
             </BarChart>
             </ResponsiveContainer>
-          </div>
 
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>Sección</th>
-                <th>Visitas</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((item) => (
-                <tr key={item.seccion}>
-                  <td>{item.seccion}</td>
-                  <td className={styles.animatedNumber}>
-                    <AnimatedNumber value={item.visitas} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+           
+          </div>
+         
         </>
       )}
+      </section>
     </div>
   );
 };
