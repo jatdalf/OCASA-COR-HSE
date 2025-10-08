@@ -79,18 +79,22 @@ const Visitas: React.FC = () => {
         <>
           <div className={styles.chartContainer}>
             <ResponsiveContainer width="100%" height={400}>
-              <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 20 }}>
+            <BarChart
+                data={data}
+                layout="vertical" // <-- Cambia la orientación
+                margin={{ top: 20, right: 30, left: 0, bottom: 20 }}
+            >
                 <CartesianGrid strokeDasharray="3 3" stroke="#ccc" />
-                <XAxis dataKey="seccion" tick={{ fill: "#333" }} />
-                <YAxis allowDecimals={false} tick={{ fill: "#333" }} />
+                <XAxis type="number" allowDecimals={false} tick={{ fill: "#333" }} />
+                <YAxis type="category" dataKey="seccion" tick={{ fill: "#333" }} />
                 <Tooltip />
                 <Bar
-                  dataKey="visitas"
-                  fill="#48d09a"
-                  animationDuration={1000}
-                  radius={[6, 6, 0, 0]}
+                dataKey="visitas"
+                fill="#49cbb5ff"
+                animationDuration={1000}
+                radius={[6, 6, 0, 0]}
                 />
-              </BarChart>
+            </BarChart>
             </ResponsiveContainer>
           </div>
 
