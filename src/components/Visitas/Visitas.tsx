@@ -100,7 +100,7 @@ const Visitas: React.FC = () => {
         ) : (
         <>
           <div className={styles.chartContainer}>
-            <ResponsiveContainer width="150%" height={500}>
+            <ResponsiveContainer width="100%" height={500}>
             <BarChart
                 data={data}
                 layout="vertical" // <-- Cambia la orientación
@@ -108,7 +108,7 @@ const Visitas: React.FC = () => {
             >
                 <CartesianGrid strokeDasharray="3 3" stroke="#ccc" />
                 <XAxis type="number" allowDecimals={false} tick={{ fill: "#333" }} />
-                <YAxis type="category" dataKey="seccion" tick={{ fill: "#333" }} />
+                <YAxis type="category" dataKey="seccion" tick={{ fill: "#333", fontSize: 16 }} width={140} />
                 <Tooltip />
                 <Bar
                 dataKey="visitas"

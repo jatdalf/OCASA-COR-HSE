@@ -2,17 +2,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 3rem;
+  padding: 0.2rem;
   min-height: 100vh;
   background: #f4f4f4;
-  width: 150%;
+  width: 180%;
 }
 
 .gridVisitas {
   display: flex;
   flex-direction: row;
   gap: 2rem;
-  width: 100%;
+  width: 90%;
   align-items: flex-start;
   justify-content: center;
   margin: 0 auto;
@@ -51,7 +51,7 @@
 }
 
 .chartContainer {
-  width: 110%;
+  width: 100%;
   min-width: 0;
   background: #fff;
   border-radius: 12px;
