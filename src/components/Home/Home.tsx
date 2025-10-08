@@ -88,12 +88,12 @@ const Home: React.FC = () => {
       </section>
 
       <div className={styles.footer}>
-        <p className={styles.footerText}>© 2025 OCASA. Todos los derechos reservados. (Version: 1.003)</p>  
+        <p className={styles.footerText}>© 2025 OCASA. Todos los derechos reservados. (Version: 1.004)</p>  
         <p className={styles.footerText}>Desarrollado por Jorge Toso</p>
-        {/* <Link to="/visitas" className={styles.footerLink}>
-        <p className={styles.footerText}>Visitas</p>
-        </Link>       */}
-        <p>Visitas globales: <strong>{visits !== null ? visits : "Cargando..."}</strong></p>
+        <Link to="/visitas" className={styles.footerLink}>
+        <p className={styles.footerText}>Visitas globales: <strong>{visits !== null ? visits : "Cargando..."}</strong></p>
+        </Link>      
+        
       </div>  
 
     </div>
