@@ -1,42 +1,65 @@
 import { useEffect, useState } from "react";
 
-export function useGlobalCounter(sectionName: string, scriptUrl: string) {
-  const [visits, setVisits] = useState<number>(0);
+interface SectionCounter {
+  seccion: string;
+  visitas: number;
+}
+
+interface AllCounters {
+  [key: string]: number;
+}
+
+export function useGlobalCounters(sectionName?: string, scriptUrl?: string) {
+  const [visits, setVisits] = useState<number | null>(null);
+  const [allVisits, setAllVisits] = useState<AllCounters | null>(null);
 
   useEffect(() => {
+    if (!scriptUrl) return;
+
     const today = new Date().toISOString().split("T")[0];
-    const storageKey = `visited_${sectionName}_${today}`;
+    const storageKey = sectionName ? `visited_${sectionName}_${today}` : null;
 
-    const updateCounter = async () => {
+    const fetchCounters = async () => {
       try {
-        const alreadyVisited = localStorage.getItem(storageKey);
+        if (sectionName) {
+          // 🔹 Incrementar contador de la sección
+          const alreadyVisited = localStorage.getItem(storageKey!);
 
-        // Primero obtiene el valor actual
-        const getResponse = await fetch(`${scriptUrl}?seccion=${sectionName}&get=true`, { mode: "cors" });
-        const getData = await getResponse.json();
-        let newCount = getData.visitas || 0;
-
-        // Incrementar contador
-        if (!alreadyVisited) {
-        const incResponse = await fetch(scriptUrl, {
+          const response = await fetch(scriptUrl, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ seccion: sectionName }),
-        });
-        const incData = await incResponse.json();
-        newCount = incData.visitas;
-        localStorage.setItem(storageKey, "true");
+          });
+
+          const data: SectionCounter = await response.json();
+          setVisits(data.visitas || 0);
+
+          if (!alreadyVisited) {
+            localStorage.setItem(storageKey!, "true");
+          }
         }
 
-        setVisits(newCount);
+        // 🔹 Obtener todos los contadores
+        const allResponse = await fetch(`${scriptUrl}?all=true`);
+        const allData = await allResponse.json();
+
+        // Convierte arreglo a objeto { seccion: visitas }
+        if (allData.resumen && Array.isArray(allData.resumen)) {
+          const allObj: AllCounters = {};
+          allData.resumen.forEach((item: SectionCounter) => {
+            allObj[item.seccion] = item.visitas;
+          });
+          setAllVisits(allObj);
+        }
       } catch (err) {
-        console.error("Error al obtener contador:", err);
-        setVisits(0);
+        console.error("Error al obtener contadores:", err);
+        if (sectionName) setVisits(0);
+        setAllVisits(null);
       }
     };
 
-    updateCounter();
+    fetchCounters();
   }, [sectionName, scriptUrl]);
 
-  return visits;
+  return { visits, allVisits };
 }
