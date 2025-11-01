@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import styles from "./Visitas.module.css";
+import AdminButton from "../AdminButton/AdminButton";
 
 interface VisitaData {
   seccion: string;
@@ -92,7 +93,8 @@ const Visitas: React.FC = () => {
             </tbody>
           </table>
         </div>
-        <div className={styles.rightBlock}>
+        <div className={styles.rightBlock}> 
+        <AdminButton />
         <h1 className={styles.title}>📊 Estadísticas de Visitas</h1>
 
         {loading ? (

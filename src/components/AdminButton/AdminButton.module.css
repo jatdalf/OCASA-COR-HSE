@@ -1,0 +1,90 @@
+.adminContainer{
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  top: 20px;
+  right: 20px; 
+  background-color: white;
+}
+
+.adminButtonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* ajustar según dónde lo colocas */
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+/* Estilo del enlace que contiene icono + etiqueta */
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+/* Círculo blanco con la imagen centrada dentro */
+.iconContainer {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+/* Imagen dentro del círculo */
+.adminIcon {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Etiqueta a la derecha: fondo gris y texto blanco */
+.adminLabel {
+  background: #6b7280; /* gris */
+  color: #ffffff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+/* Hover / foco */
+.link:hover .iconContainer,
+.link:focus .iconContainer {
+  transform: translateY(-2px) scale(1.2);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.16);
+}
+.link:hover .adminLabel,
+.link:focus .adminLabel {
+  background: #54565a; /* un gris más oscuro al hover */
+  transform: translateY(1px) scale(1.2);
+}
+
+/* Versión compacta para pantallas pequeñas */
+@media (max-width: 600px) {
+  .adminButtonContainer {
+    justify-content: center;
+  }
+  .iconContainer {
+    width: 44px;
+    height: 44px;
+  }
+  .adminIcon {
+    width: 28px;
+    height: 28px;
+  }
+  .adminLabel {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+}
